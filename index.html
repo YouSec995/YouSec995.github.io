@@ -1,428 +1,158 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-
-  
-  <title>YouSec</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>YouSec - Llzxuan</title><meta name="author" content="yousec"><meta name="copyright" content="yousec"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta property="og:type" content="website">
 <meta property="og:title" content="YouSec">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="YouSec">
 <meta property="og:locale">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
 <meta property="article:author" content="yousec">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="YouSec" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'YouSec',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-07-25 19:45:17'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-<meta name="generator" content="Hexo 5.4.0"></head>
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">YouSec</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/07/25/hello-world/" class="article-date">
-  <time datetime="2021-07-25T09:38:38.964Z" itemprop="datePublished">2021-07-25</time>
-</a>
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/25/hello-world/">Hello World</a>
-    </h1>
-  
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YouSec" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div></div><hr/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">YouSec</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">YouSec</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left_radius"><a href="/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/" title="Goroutine原理与lifecycle">     <img class="post_bg" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Goroutine原理与lifecycle"></a></div><div class="recent-post-info"><a class="article-title" href="/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/" title="Goroutine原理与lifecycle">Goroutine原理与lifecycle</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2021-07-24T16:00:00.000Z" title="Created 2021-07-25 00:00:00">2021-07-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Goroutine/">Goroutine</a></span></div><div class="content">Goroutine定义“Goroutine 是一个与其他 goroutines 并行运行在同一地址空间的 Go 函数或方法。一个运行的程序由一个或更多个 goroutine 组成。它与线程、协程、进程等不同。它是一个 goroutine” —— Rob Pike
+Goroutines 在同一个用户地址空间里并行独立执行 functions，channels 则用于 goroutines 间的通信和同步访问控制。
+goroutine 与thread有何区别
+内存占用，创建一个 goroutine 的栈内存消耗为 2 KB(Linux AMD64 Go v1.4后)，运行过程中，如果栈空间不够用，会自动进行扩缩容。  创建一个 thread 为了尽量避免极端情况下操作系统线程栈的溢出，默认会为其分配一个较大的栈内存( 1 - 8 MB 栈内存，线程标准 POSIX Thread)，而且还需要一个被称为 “guard page” 的区域用于和其他 thread 的栈空间进行隔离。而栈内存空间一旦创建和初始化完成之后其大小就不能再有变化，这决定了在某些特殊场景下系统线程栈还是有溢出的风险。
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/25/hello-world/" data-id="ckrj2az1a0000csw65hi72u9l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Goroutine原理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/" class="article-date">
-  <time datetime="2021-07-24T16:00:00.000Z" itemprop="datePublished">2021-07-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Goroutine/">Goroutine</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/">Goroutine原理与lifecycle</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Goroutine"><a href="#Goroutine" class="headerlink" title="Goroutine"></a>Goroutine</h1><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>“Goroutine 是一个与其他 goroutines 并行运行在同一地址空间的 Go 函数或方法。一个运行的程序由一个或更多个 goroutine 组成。它与线程、协程、进程等不同。它是一个 goroutine” —— Rob Pike</p>
-<p><strong>Goroutines 在同一个用户地址空间里并行独立执行 functions，channels 则用于 goroutines 间的通信和同步访问控制。</strong></p>
-<h3 id="goroutine-与thread有何区别"><a href="#goroutine-与thread有何区别" class="headerlink" title="goroutine 与thread有何区别"></a>goroutine 与thread有何区别</h3><ul>
-<li><p><strong>内存占用</strong>，创建一个 goroutine 的栈内存消耗为 2 KB(Linux AMD64 Go v1.4后)，运行过程中，如果栈空间不够用，<strong>会自动进行扩缩容</strong>。<br>  <em>创建一个 thread 为了尽量避免极端情况下操作系统线程栈的溢出，默认会为其分配一个较大的栈内存( 1 - 8 MB 栈内存，线程标准 POSIX Thread)，而且还需要一个被称为 “guard page” 的区域用于和其他 thread 的栈空间进行隔离。而栈内存空间一旦创建和初始化完成之后其大小就不能再有变化，这决定了在某些特殊场景下系统线程栈还是有溢出的风险。</em></p>
-</li>
-<li><p><strong>创建/销毁</strong>，线程创建和销毀都会有巨大的消耗，是<strong>内核级的交互</strong>(trap)。<br>  <em>POSIX 线程(定义了创建和操纵线程的一套 API)通常是在已有的进程模型中增加的逻辑扩展，所以线程控制和进程控制很相似。而进入内核调度所消耗的性能代价比较高，开销较大。goroutine 是用户态线程，是由 go runtime 管理，创建和销毁的消耗非常小。</em></p>
-</li>
-<li><p><strong>调度切换</strong></p>
-<pre><code>  抛开陷入内核，线程切换会消耗 1000-1500 纳秒(**上下文保存成本高，较多寄存器，公平性，复杂时间计算统计**)，一个纳秒平均可以执行 12-18 条指令。
-  所以由于线程切换，执行指令的条数会减少 12000-18000。goroutine 的切换约为 200 ns(用户态、3个寄存器，现在甚至达到了100~120ns)，相当于 2400-3600 条指令。因此，goroutines 切换**成本比 threads 要小得多**。
-</code></pre>
-</li>
-<li><p><strong>复杂性</strong></p>
-<pre><code>  线程的**创建和退出**复杂，多个 thread 间**通讯**复杂(share memory)。
-  不能大量创建线程(参考早期的 httpd)，成本高，使用网络多路复用，存在大量`callback`(参考twemproxy、nginx 的代码)。对于应用服务线程门槛高，例如需要做第三方库隔离，需要考虑引入线程池等。
-</code></pre>
-</li>
-</ul>
-<h3 id="M-N模型"><a href="#M-N模型" class="headerlink" title="M:N模型"></a>M:N模型</h3><p>Go 创建 M 个线程(CPU 执行调度的单元，内核的 task_struct)，之后创建的 N 个 goroutine 都会依附在这 M 个线程上执行，即 M:N 模型。它们能够同时运行，与线程类似，但相比之下非常轻量。因此，<strong>程序运行时，Goroutines 的个数应该是远大于线程的个数的</strong>（phread 是内核线程？）。</p>
-<p><strong>同一个时刻，一个线程只能跑一个 goroutine</strong>。<em>当 goroutine 发生阻塞 (chan 阻塞、mutex、syscall 等等) 时，Go 会把当前的 goroutine 调度走，让其他 goroutine 来继续执行，而不是让线程阻塞休眠，尽可能多的分发任务出去，让 CPU 忙</em>。</p>
-<h1 id="GMP调度模型"><a href="#GMP调度模型" class="headerlink" title="GMP调度模型"></a>GMP调度模型</h1><h2 id="GMP概念"><a href="#GMP概念" class="headerlink" title="GMP概念"></a>GMP概念</h2><ul>
-<li>  G </li>
-</ul>
-<p>goroutine 的缩写，每次 go func() 都代表一个 G，无限制。<br>使用 <code>struct runtime.g</code>，包含了当前 goroutine 的<strong>状态、堆栈、上下文</strong>。</p>
-<ul>
-<li>  M</li>
-</ul>
-<p>工作线程(<code>OS thread</code>)也被称为 Machine，使用 <code>struct runtime.m</code>，所有 M 是有<strong>线程栈</strong>的。<br>    如果不对该线程栈提供内存的话，系统会给该线程栈提供内存(不同操作系统提供的线程栈大小不同)。当指定了线程栈，则 <code>M.stack→G.stack</code>，M 的 PC 寄存器(下一个指令执行寄存器)指向 G 提供的函数，然后去执行。</p>
-<ul>
-<li>  P</li>
-</ul>
-<p><em>“Processor”是一个抽象的概念，并不是真正的物理 CPU。</em></p>
-<p>Dmitry Vyukov 的方案是引入一个结构 P，它代表了 <em>M 所需的上下文环境</em>，也是处理<strong>用户级代码逻辑的处理器</strong>。它负责<strong>衔接 M 和 G 的调度上下文，将等待执行的 G 与 M 对接</strong>。当 P 有任务时需要<strong>创建</strong>或者<strong>唤醒</strong>一个 M 来执行它队列里的任务。所以 P/M 需要进行绑定，构成一个执行单元。P 决定了并行任务的数量，可通过 <code>runtime.GOMAXPROCS</code> 来设定。在 Go1.5 之后GOMAXPROCS 被默认设置可用的核数，而之前则默认为1。</p>
-<p>Tips: <a target="_blank" rel="noopener" href="https://github.com/uber-go/automaxprocs">https://github.com/uber-go/automaxprocs</a></p>
-<p>Automatically set GOMAXPROCS to match Linux container CPU quota.</p>
-<p><strong>mcache/stackalloc 从 M 移到了 P，而 G 队列也被分成两类，保留全局 G 队列，同时每个 P 中都会有一个本地的 G 队列。</strong></p>
-<h3 id="GM调度器"><a href="#GM调度器" class="headerlink" title="GM调度器"></a>GM调度器</h3><p>Go 1.2前的调度器实现，限制了 Go 并发程序的伸缩性，尤其是对那些有高吞吐或并行计算需求的服务程序。</p>
-<p>每个 goroutine 对应于 runtime 中的一个抽象结构：G，而 thread 作为“物理 CPU”的存在而被抽象为一个结构：M(machine)。当 goroutine 调用了一个阻塞的系统调用，运行这个 goroutine 的线程就会被阻塞，这时至少应该再创建/唤醒一个线程来运行别的没有阻塞的 goroutine。线程这里可以创建不止一个，可以按需不断地创建，而活跃的线程（处于非阻塞状态的线程）的最大个数存储在变量 GOMAXPROCS中。</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\GM-Schedule.png" alt="image-20210718144120182"></p>
-<h3 id="GM调度模型的问题"><a href="#GM调度模型的问题" class="headerlink" title="GM调度模型的问题"></a>GM调度模型的问题</h3><ul>
-<li><p><strong>单一全局互斥锁</strong>(<code>Sched.Lock</code>)和<strong>集中状态存储</strong></p>
-<pre><code>  导致所有 goroutine 相关操作，比如：创建、结束、重新调度等都要上锁。
-</code></pre>
-</li>
-<li><p><strong>Goroutine 传递</strong>问题</p>
-<pre><code>   `M` 经常**在 M 之间**传递”可运行”的 goroutine，这导致**调度延迟增大**以及**额外的性能损耗**（*刚创建的 G 放到了全局队列，而不是本地 M 执行，不必要的开销和延迟*）。
-</code></pre>
-</li>
-<li><p><strong>Per-M 持有内存缓存</strong> (<code>M.mcache</code>)</p>
-<pre><code>  每个 M 持有 `mcache `和 `stackalloc`，然而**只有在 M 运行 Go 代码时才需要使用内存**(每个 mcache 可以高达2mb)，**当 M 在处于 syscall 时并不需要这个内存**。运行 Go 代码和阻塞在 syscall 的 M 的比例高达`1:100`，造成了很大的浪费。同时**内存亲缘性也较差**，G 当前在 M 运行后对 M 的内存进行了预热，因为现在* G 调度到同一个 M 的概率不高，数据局部性不好*。
-</code></pre>
-</li>
-<li><p><strong>严重的线程阻塞/解锁</strong></p>
-<pre><code>  在**系统调用**的情况下，工作线程**经常被阻塞和取消阻塞**，这增加了很多开销。比如 M 找不到G，此时 M 就会进入频繁阻塞/唤醒来进行检查的逻辑，以便及时发现新的 G 来执行。
-</code></pre>
-<p>  <code>by Dmitry Vyukov “Scalable Go Scheduler Design Doc”</code></p>
-</li>
-</ul>
-<h2 id="GMP调度器"><a href="#GMP调度器" class="headerlink" title="GMP调度器"></a>GMP调度器</h2><p>引入了<code> local queue</code>，因为 P 的存在，runtime 并不需要做一个集中式的 goroutine 调度，每一个 M 都会在 <code>P&#39;s local queue</code>、<code>global queue</code> 或者<code>其他 P 队列中找 G </code>执行，<em>减少全局锁对性能的影响</em>。</p>
-<p>这也是 <code>GMP Work-stealing</code> 调度算法的核心。注意 P 的本地 G 队列还是可能面临一个并发访问的场景，为了避免加锁，这里 P 的本地队列是一个 <code>LockFree</code>的队列，窃取 G 时<strong>使用 CAS 原子操作</strong>来完成。关于LockFree 和 CAS 的知识参见 Lock-Free。</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\GMP-schedule模型.png" alt="image-20210718145843014"></p>
-<h1 id="Work-stealing调度算法"><a href="#Work-stealing调度算法" class="headerlink" title="Work-stealing调度算法"></a>Work-stealing调度算法</h1><h3 id="Work-stealing"><a href="#Work-stealing" class="headerlink" title="Work-stealing"></a>Work-stealing</h3><p><strong>当一个 P 执行完本地所有的 G 之后，并且全局队列为空的时候，会尝试挑选一个受害者 P，从它的 G 队列中窃取一半的 G。否则会从全局队列中获取(当前个数/GOMAXPROCS)个 G。</strong></p>
-<p><strong>为了保证公平性，从随机位置上的 P 开始，而且遍历的顺序也随机化了(选择一个小于 GOMAXPROCS，且和它互为质数的步长)，保证遍历的顺序也随机化了。</strong></p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\work-stealing-p0.png" alt="image-20210718150126958"></p>
-<p>光窃取失败时获取是不够的，可能会导致<strong>全局队列饥饿</strong>。P 的调度算法中还会<strong>每个 N (1/61 time)轮调度之后就去全局队列拿一个 G</strong>。</p>
-<p>谁放入的全局队列呢？</p>
-<p><em>新建 G 时 P 的本地 G 队列放不下已满并达到256个的时候会放半数 G 到全局队列去，阻塞的系统调用返回时找不到空闲 P 也会放到全局队列。</em></p>
-<h3 id="Syscall"><a href="#Syscall" class="headerlink" title="Syscall"></a>Syscall</h3><p>调用 syscall 后<strong>M会解绑 P</strong>，然后**<code>M </code>和 <code>G</code> 进入<code>阻塞</code>*<em>，而 P 此时的状态就是 <code>syscall</code>，</em>表明这个 P 的 G 正在 syscall 中<em>，这时的 P 是</em>不能被调度给别的 M* 的。<em>如果在短时间内阻塞的 M 就唤醒了，那么 M 会优先来重新获取这个 P，能获取到就继续绑回去，这样有利于数据的局部性</em>。</p>
-<p>系统监视器 (<code>system monitor</code>)，称为 <code>sysmon</code>，会<strong>定时扫描</strong>。在执行 syscall 时, 如果某个 P 的 G 执行超过一个<code> sysmon tick(10ms)</code>，就会把他设为 <code>idle</code>，<em>重新调度给需要的 M，强制解绑</em>。</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\syscall-handoffs-p-sysmon.png" alt="image-20210718152037397"></p>
-<p>P1 和 M 脱离后目前在 idle list 中等待被绑定（处于 syscall 状态）。而 syscall 结束后 M 按照如下规则执行直到满足其中一个条件：</p>
-<ol>
-<li> 尝试<em>获取同一个 P</em>(P1)，恢复执行 G</li>
-<li> 尝试<em>获取 idle list 中的其他空闲 P</em>，恢复执行 G</li>
-<li> <em>找不到空闲 P，把 G 放回 global queue，M 放回到 idle list</em></li>
-</ol>
-<h3 id="Spining-thread"><a href="#Spining-thread" class="headerlink" title="Spining thread"></a>Spining thread</h3><p><em>线程自旋是相对于线程阻塞而言的</em>，表象就是循环执行一个指定逻辑(调度逻辑，目的是不停地寻找 G)。这样做的问题显而易见，如果 G 迟迟不来，<em>CPU 会白白浪费在这无意义的计算上</em>。但好处也很明显，<em>降低了 M 的上下文切换成本，提高了性能</em>。在两个地方引入自旋：</p>
-<ul>
-<li>  类型1：M 不带 P 的<strong>找 P</strong> 挂载（一有 P 释放就结合）</li>
-<li>  类型2：M 带 P 的<strong>找 G</strong> 运行（一有 runable 的 G 就执行）</li>
-</ul>
-<p>为了避免过多浪费 CPU 资源，自旋的 M 数量最多只允许 <code>GOMAXPROCS (Busy P)</code>。同时当有类型1的自旋 M 存在时，类型2的自旋 M 就不阻塞，阻塞会释放 P，一释放 P 就马上被类型1的自旋 M 抢走了，没必要。</p>
-<p>在<strong>新 G 被创建</strong>、<strong>M 进入系统调用</strong>、<strong>M 从空闲被激活</strong>这三种状态变化前，调度器会确保<strong>至少有一个自旋 M 存在</strong>（唤醒或者创建一个 M），<strong>除非没有空闲的 P</strong>。</p>
-<ul>
-<li><p>  <code>当新 G 创建，如果有可用 P，就意味着新 G 可以被立即执行，即便不在同一个 P 也无妨，所以我们保留一个自旋的 M（这时应该不存在类型1的自旋只有类型2的自旋）就可以保证新 G 很快被运行。</code></p>
-</li>
-<li><p>  <code>当 M 进入系统调用，意味着 M 不知道何时可以醒来，那么 M 对应的 P 中剩下的 G 就得有新的 M 来执行，所以我们保留一个自旋的 M 来执行剩下的 G（这时应该不存在类型2的自旋只有类型1的自旋）。</code></p>
-</li>
-<li><p>  <code>如果 M 从空闲变成活跃，意味着可能一个处于自旋状态的 M 进入工作状态了，这时要检查并确保还有一个自旋 M 存在，以防还有 G 或者还有 P 空着的。</code></p>
-</li>
-</ul>
-<h3 id="GMP问题总结"><a href="#GMP问题总结" class="headerlink" title="GMP问题总结"></a>GMP问题总结</h3><ul>
-<li><p><strong>单一全局互斥锁(Sched.Lock)和集中状态存储</strong></p>
-<pre><code>  G 被分成全局队列和 P 的本地队列，*全局队列依旧是全局锁，但是使用场景明显很少，P 本地队列使用无锁队列，使用原子操作来面对可能的并发场景*。
-</code></pre>
-</li>
-<li><p><strong>Goroutine 传递问题</strong></p>
-<pre><code>   *G 创建时就在 P 的本地队列*，可以避免在 G 之间传递（窃取除外），G 对 P 的数据局部性好; 当 G 开始执行了，系统调用返回后 M 会尝试获取可用 P，获取到了的话可以避免在 M 之间传递。**而且优先获取调用阻塞前的 P，所以 G 对 M 数据局部性好，G 对 P 的数据局部性也好。**
-</code></pre>
-</li>
-<li><p><strong>Per-M 持有内存缓存 (M.mcache)</strong></p>
-<pre><code> *内存 mcache 只存在 P 结构中*，P 最多只有 GOMAXPROCS 个，远小于 M 的个数，所以内存没有过多的消耗。  
-</code></pre>
-</li>
-<li><p>严重的线程<strong>阻塞/解锁</strong></p>
-<pre><code>  通过*引入自旋*，保证**任何时候都有处于等待状态的自旋 M**，避免**在等待可用的 P 和 G 时频繁的阻塞和唤醒**。
-</code></pre>
-</li>
-</ul>
-<p><code>by Dmitry Vyukov “Scalable Go Scheduler Design Doc”</code></p>
-<h3 id="sysmon"><a href="#sysmon" class="headerlink" title="sysmon"></a>sysmon</h3><p>sysmon 也叫<em>监控线程</em>，它<em>无需 P 也可以运行</em>，他是一个<em>死循环</em>，每<code>20us~10ms</code>循环一次，循环完一次就 <code>sleep </code>一会，为什么会是一个<strong>变动的周期</strong>呢，主要是<em>避免空转</em>，如果每次循环都没什么需要做的事，那么 sleep 的时间就会加大。</p>
-<ul>
-<li>  <strong>释放</strong>闲置超过5分钟的 <code>span </code><strong>物理内存</strong>；</li>
-<li>  如果超过2分钟没有<strong>垃圾回收，强制执行</strong>；</li>
-<li>  将长时间未处理的 <code>netpoll </code><em>添加到全局队列</em>；</li>
-<li>  向长时间运行的 G 任务<strong>发出抢占调度</strong>；</li>
-<li>  <strong>收回</strong>因 <code>syscall </code><strong>长时间阻塞的 P</strong>；</li>
-</ul>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\preempt-by-sysmon.png" alt="image-20210718155407628"></p>
-<p><em>当 P 在 M 上执行时间超过10ms</em>，<code>sysmon </code>调用 <code>preemptone </code>将 G 标记为 <code>stackPreempt </code>。因此需要在某个地方触发检测逻辑，Go 当前是在<strong>检查栈是否溢出的地方判定</strong>(<code>morestack</code>())，M 会保存当前 G 的上下文，重新进入调度逻辑。</p>
-<p>死循环：issues/11462</p>
-<p>信号抢占：go1.14基于信号的<em>抢占式调度</em>实现原理</p>
-<p>异步抢占，注册 <code>sigurg </code>信号，通过 <code>sysmon </code>检测，对 M 对应的线程发送信号，触发注册的 handler，它往当前 G 的 PC 中插入一条指令(调用某个方法)，在处理完 handler，G 恢复后，自己把自己推到了 global queue 中。</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\preempt-by-sysmon-sig.png" alt="image-20210718155635185"></p>
-<h3 id="Network-poller"><a href="#Network-poller" class="headerlink" title="Network poller"></a>Network poller</h3><p>Go <strong>所有的 I/O 都是阻塞的</strong>。然后通过 <code>goroutine + channel</code> 来<em>处理并发</em>。因此所有的 IO 逻辑都是直来直去的，你不再需要回调，不再需要 future，要的仅仅是 step by step。这对于代码的可读性是很有帮助的。</p>
-<p><em>G 发起网络 I/O 操作也不会导致 M 被阻塞(仅阻塞G)，从而不会导致大量 M 被创建出来</em>。<strong>将异步 I/O 转换为阻塞 I/O 的部分称为 netpoller</strong>。<em>打开或接受连接都被设置为非阻塞模式。如果你试图对其进行 I/O 操作，并且文件描述符数据还没有准备好，G 会进入 gopark 函数，将当前正在执行的 G 状态保存起来，然后切换到新的堆栈上执行新的 G。</em></p>
-<p>那什么时候 G 被调度回来呢？</p>
-<ul>
-<li>  <code>sysmon</code></li>
-<li>  <code>schedule()</code>：M 找 G 的调度函数</li>
-<li>  <code>GC</code>：start the world</li>
-</ul>
-<p>调用 netpoll() 在某一次调度 G 的过程中，处于就绪状态的 fd 对应的 G 就会被调度回来。</p>
-<p>G 的 gopark 状态：G 置为 waiting 状态，等待显示 goready 唤醒，在 poller 中用得较多，还有锁、chan 等。</p>
-<h3 id="Schedule-Affinity"><a href="#Schedule-Affinity" class="headerlink" title="Schedule Affinity"></a>Schedule Affinity</h3><p>在 chan 来回通信的 goroutine 会导致频繁的 blocks，即频繁地在本地队列中重新排队。然而，由于本地队列是 FIFO 实现，如果另一个 goroutine 占用线程，unblock goroutine 不能保证尽快运行。同时 Go 亲缘性调度的一些限制：Work-stealing、系统调用。</p>
-<p>goroutine #9 在 chan 被阻塞后恢复。但是，它必须等待#2、#5和#4之后才能运行。goroutine #5将阻塞其线程，从而延迟goroutine #9，并使其面临被另一个 P 窃取的风险。</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\image-20210718160233704.png" alt="image-20210718160233704"></p>
-<p>针对 communicate-and-wait 模式，进行了<strong>亲缘性调度</strong>的优化。Go 1.5 在 P 中引入了 <code>runnext </code>特殊的一个字段，可以<strong>高优先级执行 unblock G</strong>。</p>
-<p><em>goroutine #9现在被标记为下一个可运行的</em>。<strong>这种新的优先级排序允许 goroutine 在再次被阻塞之前快速运行</strong>。这一变化对运行中的标准库产生了总体上的积极影响，提高了一些包的性能。</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\affinity-schedule.png" alt="image-20210718160318778"></p>
-<h1 id="Goroutine-Lifecycle"><a href="#Goroutine-Lifecycle" class="headerlink" title="Goroutine Lifecycle"></a>Goroutine Lifecycle</h1><h3 id="Go程序启动"><a href="#Go程序启动" class="headerlink" title="Go程序启动"></a>Go程序启动</h3><p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\runtime-main.png" alt="image-20210718160426412"></p>
-<p>整个程序始于一段汇编，而在随后的<code> runtime·rt0_go</code>（也是汇编程序）中，会执行很多初始化工作。</p>
-<ul>
-<li>  <strong>绑定 m0 和 g0</strong>，<code>m0</code>就是<strong>程序的主线程</strong>，程序启动必然会拥有一个主线程，这个就是 m0。<code>g0</code> <strong>负责调度</strong>，即 <code>shedule() 函数</code>。</li>
-<li><strong>创建 P</strong>，<strong>绑定 m0 和 p0</strong>，首先会<code>创建 GOMAXPROCS 个 P</code> ，存储在 <code>sched </code>的 <code>空闲链表(pidle)</code>。<br>  新建任务 <em>g 到 p0 本地队列</em>，<em>m0 的 g0 会创建一个 指向 runtime.main() 的 g</em> ，并<em>放到 p0 的本地队列</em>。</li>
-<li>  <strong>runtime.main()</strong>: 启动 <code>sysmon </code>线程；启动 <code>GC</code> <code>协程</code>；执行 <code>init</code>，即代码中的各种 init 函数；执行 <code>main.main</code>(用户程序main) 函数。</li>
-</ul>
-<h3 id="OS-thread-创建"><a href="#OS-thread-创建" class="headerlink" title="OS thread 创建"></a>OS thread 创建</h3><p>准备运行的<strong>新 goroutine 将唤醒 P</strong> 以更好地分发工作。这个 <strong>P 将创建一个与之关联的 M 绑定到一个 OS thread</strong>。</p>
-<p>go func() 中 触发 <code>Wakeup </code>唤醒机制：</p>
-<p>有空闲的 P 而没有在 <code>spinning </code>状态的 M 时候, 需要去<strong>唤醒</strong>一个*空闲(睡眠)的 M *或者<strong>新建</strong>一个。当线程首次创建时，会执行一个特殊的 G，即 <em>g0，它负责管理和调度 G</em>。</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\OS-thread.png" alt="image-20210718160954428"></p>
-<h3 id="g0"><a href="#g0" class="headerlink" title="g0"></a>g0</h3><p> Go 基于<em>两种断点将 G 调度到线程</em>上： </p>
-<ul>
-<li>  当<strong>G 阻塞</strong>时：系统调用、互斥锁或 chan。阻塞的 G 进入睡眠模式/进入队列，并允许 Go 安排和运行等待其他的 G。</li>
-<li>  在<strong>函数调用期间</strong>，如果 G 必须<strong>扩展其堆栈</strong>。这个断点允许 Go 调度另一个 G 并避免运行 G 占用 CPU。</li>
-</ul>
-<p>在这两种情况下，<strong>运行调度程序的 g0 将当前 G 替换为另一个 G</strong>，即 ready to run。然后，选择的 G 替换 g0 并在线程上运行。与常规 G 相反，<strong>g0 有一个固定和更大的栈</strong>。</p>
-<ul>
-<li>  Defer 函数的分配</li>
-<li>  GC 收集，比如 STW、扫描 G 的堆栈和标记、清除操作</li>
-<li>  栈扩容，当需要的时候，由 g0 进行扩栈操作</li>
-</ul>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\G0-schedule.png" alt="image-20210718161445297"></p>
-<h3 id="Schedule"><a href="#Schedule" class="headerlink" title="Schedule"></a>Schedule</h3><p>在 Go 中，G 的切换相当轻便，其中需要<strong>保存的状态</strong>仅仅涉及以下<em>两个</em>：</p>
-<ul>
-<li>  Goroutine 在<em>停止运行前执行的指令</em>，程序<em>当前要运行的指令</em>是<em>记录在程序计数器（PC）中</em>的， G 稍后将在同一指令处恢复运行；</li>
-<li>  G 的<em>堆栈</em>，以便在再次运行时<em>还原局部变量</em>；</li>
-</ul>
-<p>在切换之前，堆栈将被保存，以便在 G 再次运行时进行恢复.</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\schedule-time.png" alt="image-20210718161747355"></p>
-<p>从 g 到 g0 或从 g0 到 g 的切换是相当迅速的，它们<em>只包含少量固定的指令</em>。相反，对于调度阶段，<strong>调度程序需要检查许多资源以便确定下一个要运行的 G</strong>。</p>
-<ul>
-<li>  当前 g 阻塞在 chan 上并切换到 g0：1、PC 和堆栈指针一起保存在内部结构中；2、将 g0 设置为正在运行的 goroutine；3、g0 的堆栈替换当前堆栈；</li>
-<li>  g0 寻找新的 Goroutine 来运行</li>
-<li>  g0 使用所选的 Goroutine 进行切换： 1、PC 和堆栈指针是从其内部结构中获取的；2、程序跳转到对应的 PC 地址；</li>
-</ul>
-<h3 id="Goroutine-Recycle"><a href="#Goroutine-Recycle" class="headerlink" title="Goroutine Recycle"></a>Goroutine Recycle</h3><p>G 很容易创建，栈很小以及快速的上下文切换。基于这些原因，开发人员非常喜欢并使用它们。然而，一个产生许多 <code>shortlive</code> 的 G 的程序<em>将花费相当长的时间来创建和销毁它们</em>。</p>
-<p>每个 P 维护一个 <code>freelist G</code>，保持这个列表是<em>本地的</em>，这样做的好处是不使用任何锁来 push/get 一个空闲的 G。<em>当 G 退出当前工作时，它将被 push 到这个空闲列表中</em>。</p>
-<p>为了更好地分发空闲的 G ，<strong>调度器</strong>也有自己的列表。它实际上有两个列表：<strong>一个包含已分配栈的 G，另一个包含释放过堆栈的 G（无栈）</strong>。</p>
-<p>锁保护 central list，因为任何 M 都可以访问它。当本地列表长度超过64时，调度程序持有的列表从 P 获取 G。然后一半的 G 将移动到中心列表。需求回收 G 是一种节省分配成本的好方法。但是，由于堆栈是动态增长的，现有的G 最终可能会有一个大栈。因此，<em>当堆栈增长（即超过2K）时，Go 不会保留这些栈</em>。</p>
-<p><img src="E:\MyFile\GO语言进阶训练营\第13周runtime\go-recycle.png" alt="image-20210718162414057"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/" data-id="ckrj2az1h0001csw60abg5aki" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Goroutine/">Goroutine</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2021/07/25/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/">Goroutine原理与lifecycle</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2021 yousec<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-  </div>
-</body>
-</html>
+ ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">yousec</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/" title="Goroutine原理与lifecycle"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Goroutine原理与lifecycle"/></a><div class="content"><a class="title" href="/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/" title="Goroutine原理与lifecycle">Goroutine原理与lifecycle</a><time datetime="2021-07-24T16:00:00.000Z" title="Created 2021-07-25 00:00:00">2021-07-25</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Goroutine/"><span class="card-category-list-name">Goroutine</span><span class="card-category-list-count">1</span></a></li>
+            </ul></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/07/"><span class="card-archive-list-date">July 2021</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">1</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"></div></div><div class="webinfo-item"><div class="item-name">Last Push :</div><div class="item-count" id="last-push-date" data-lastPushDate="2021-07-25T11:45:17.201Z"></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By yousec</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
