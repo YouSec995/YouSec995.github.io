@@ -18,6 +18,14 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Golang </tag>
+            
+            <tag> GC </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -37,6 +45,16 @@
       </categories>
       
       
+        <tags>
+            
+            <tag> Golang </tag>
+            
+            <tag> GMP </tag>
+            
+            <tag> Algorithm </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -55,6 +73,18 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> Golang </tag>
+            
+            <tag> Heap </tag>
+            
+            <tag> Stack </tag>
+            
+            <tag> Memory </tag>
+            
+        </tags>
       
     </entry>
     

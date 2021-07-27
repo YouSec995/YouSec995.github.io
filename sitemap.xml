@@ -2,23 +2,51 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2021/07/25/go-GC%E5%8E%9F%E7%90%86/</loc>
-    
-    <lastmod>2021-07-25</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://example.com/2021/07/25/Goroutine%E5%8E%9F%E7%90%86/</loc>
     
-    <lastmod>2021-07-25</lastmod>
+    <lastmod>2021-07-27</lastmod>
     
   </url>
   
   <url>
     <loc>http://example.com/2021/07/25/go%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%8E%9F%E7%90%86/</loc>
     
-    <lastmod>2021-07-25</lastmod>
+    <lastmod>2021-07-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/2021/07/25/go-GC%E5%8E%9F%E7%90%86/</loc>
+    
+    <lastmod>2021-07-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/index.html</loc>
+    
+    <lastmod>2021-07-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/index.html</loc>
+    
+    <lastmod>2021-07-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/archives/index.html</loc>
+    
+    <lastmod>2021-07-27</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://example.com/messageboard/index.html</loc>
+    
+    <lastmod>2021-07-27</lastmod>
     
   </url>
   
@@ -30,6 +58,55 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://example.com/tags/Golang/</loc>
+    <lastmod>2021-07-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Heap/</loc>
+    <lastmod>2021-07-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Stack/</loc>
+    <lastmod>2021-07-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Memory/</loc>
+    <lastmod>2021-07-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/GC/</loc>
+    <lastmod>2021-07-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/GMP/</loc>
+    <lastmod>2021-07-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Algorithm/</loc>
+    <lastmod>2021-07-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
 
   
