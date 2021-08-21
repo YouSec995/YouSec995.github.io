@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>操作系统笔记之CPU的认知 | YouSec</title><meta name="keywords" content="CPU,寄存器,处理器,OS"><meta name="author" content="yousec"><meta name="copyright" content="yousec"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本篇主要介绍CPU的组成以及记录下其中关于寄存器的知识。以x86为例进行说明。 CPU的组成我们知道现在的电脑组成一般包含CPU、内存、USB、硬盘、网卡、显卡、声卡等等，其中CPU和内存较为重要，CPU（Central Processing Unit，中央处理器）是一台电脑的核心，可以视作一个人的大脑，可以说所有设备都是围绕它来展开的（计算机的计算二字全都在CPU里了，你说它核心不核心）。 而这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统笔记之CPU的认知">
+<meta property="og:url" content="http://example.com/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/index.html">
+<meta property="og:site_name" content="YouSec">
+<meta property="og:description" content="本篇主要介绍CPU的组成以及记录下其中关于寄存器的知识。以x86为例进行说明。 CPU的组成我们知道现在的电脑组成一般包含CPU、内存、USB、硬盘、网卡、显卡、声卡等等，其中CPU和内存较为重要，CPU（Central Processing Unit，中央处理器）是一台电脑的核心，可以视作一个人的大脑，可以说所有设备都是围绕它来展开的（计算机的计算二字全都在CPU里了，你说它核心不核心）。 而这">
+<meta property="og:locale">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-08-21T07:34:15.000Z">
+<meta property="article:modified_time" content="2021-08-21T07:36:16.142Z">
+<meta property="article:author" content="yousec">
+<meta property="article:tag" content="CPU">
+<meta property="article:tag" content="寄存器">
+<meta property="article:tag" content="处理器">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '操作系统笔记之CPU的认知',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-21 15:36:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="YouSec" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">YouSec</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fas fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa-fw fa fa-book"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">操作系统笔记之CPU的认知</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-08-21T07:34:15.000Z" title="Created 2021-08-21 15:34:15">2021-08-21</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-08-21T07:36:16.142Z" title="Updated 2021-08-21 15:36:16">2021-08-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="操作系统笔记之CPU的认知"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>本篇主要介绍CPU的组成以及记录下其中关于寄存器的知识。以x86为例进行说明。</p>
+<h1 id="CPU的组成"><a href="#CPU的组成" class="headerlink" title="CPU的组成"></a>CPU的组成</h1><p>我们知道现在的电脑组成一般包含CPU、内存、USB、硬盘、网卡、显卡、声卡等等，其中CPU和内存较为重要，CPU（Central Processing Unit，中央处理器）是一台电脑的核心，可以视作一个人的大脑，可以说所有设备都是围绕它来展开的（计算机的计算二字全都在CPU里了，你说它核心不核心）。</p>
+<p>而这些设备之间的连接血管或者经络是一个叫做<strong>总线</strong>(Bus)的东西。其连接的逻辑图如下所示：</p>
+<img src="/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/CPU%E7%A1%AC%E4%BB%B6%E9%80%BB%E8%BE%91%E8%BF%9E%E6%8E%A5%E5%9B%BE.png" class="" title="image-20210817222132414">
+
+<p>对于其他的设备而言，<strong>内存</strong>是相对来说最为重要的。CPU是拥有计算能力的，但是我们在计算的时候需要计算什么数据呢（也就是数据在哪儿）？计算的结果又存放在哪儿呢？由于CPU造价昂贵（各位可以对比下配置电脑的时候CPU和内存条的价格就心中有数了），并且其主要功能是“计算”二字，所以不可能将存储大量数据的功能也放置在CPU中（并不是说CPU中就没有一点儿数据了），这个时候就需要一个跟CPU进行“沟通”并且速度不能太慢的硬件–内存。</p>
+<h3 id="CPU是如何计算的？"><a href="#CPU是如何计算的？" class="headerlink" title="CPU是如何计算的？"></a>CPU是如何计算的？</h3><img src="/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/CPU%E8%BF%90%E8%A1%8C%E5%9B%BE.png" class="" title="image-20210821135127784">
+
+<p>CPU是负责计算的，那么一定可以想到CPU中是拥有一个计算能力的硬件组成，一般我们把其成为<strong>计算单元</strong>，它的责任就只有<code>算</code>这一个单调的能力，比如做加法、位移等。但是这依旧存在一个问题，它计算的数据是从哪儿来的？结果需要放到哪儿？</p>
+<p>上面介绍过内存解决了数据从哪儿来、存放在哪儿的问题，但是现在又有一个问题，若每次的计算数据都是通过总线去内存中拿，因为内存速度还远比不上CPU的计算速度，这就会导致计算的时间远小于取数据的时间，不能够“榨干”CPU性能，就像人只用了幼儿园的大脑，完全是浪费行为（浪费可耻）。所以，CPU中有了计算的硬件之后，还需要有一个能够跟得上计算能力的存储结构，我们把它叫做<strong>数据单元</strong>。数据单元其特点就是存取数据飞一般的感觉，用来暂时存放数据和运算结果，其包括了<strong>CPU缓存</strong>和<strong>寄存器组</strong>。</p>
+<p>好了，现在有了计算能力的计算单元，也有了能跟上计算能力的存储结构数据单元，那么就可以进行计算了…然后怎么去计算呢？也就是说该计算什么不该计算什么呢？所以CPU光有计算单元、数据单元是不能够有效的进行目的性计算的，必须有一个能够控制计算的存在，去控制指挥计算，我们把这个硬件称为<strong>控制单元</strong>。<em>控制单元负责获取下一条指令并且去执行这条指令。这个指令会指导运算单元取出数据单元中的某些数据进行计算，之后放在数据单元中去。</em></p>
+<p>所以，总的来说CPU分为计算单元（计算能力）、数据单元（存放数据）、控制单元（怎么去计算）三部分组成，并且依靠这三个部分相互合作协调去计算目的指令的值。</p>
+<h3 id="CPU与内存的合作"><a href="#CPU与内存的合作" class="headerlink" title="CPU与内存的合作"></a>CPU与内存的合作</h3><p>一个程序运行时，会有独立的内存空间，程序会被加载自己的内存中形成<strong>代码段</strong>，代码段中可以认为存放的是需要执行的指令、指令集，也就是CPU的控制单元需要执行的对象。</p>
+<p>程序在运行时，还需要对一些数据进行操作并且会产生一些结果，这些数据都存放在内存的<strong>数据段</strong>中。</p>
+<p><em>那么问题来了，CPU是如何执行这些指令、操作这些数据、写回结果到内存中呢？</em></p>
+<p>首先指令怎么取？为了解决这个问题，CPU的控制单元中（为什么是控制单元呢？因为其职责就是控制呀）设置了一个<strong>指令指针寄存器</strong>，里面存放了下一条指令在内存中的地址。这样就可以去内存中将要执行的指令取过来。但是取过来之后放在哪儿呢（不可能是指令指针寄存器了）？CPU的控制单元又提供了一个指令寄存器，用来存放将要执行的指令。</p>
+<p>现在有了指令了，那么计算单元怎么去计算呢？这得从这条指令结构说起：要执行的这条指令被分为了两部分，一部分是要做什么操作（计算需求），一部分是要操作什么（数据需求）。所以这条指令会把第一部分交给计算单元去进行计算，将第二部分交给数据单元。</p>
+<p>对于一个进程现在已经可以进行CPU运算了，但是当存在多个进程的时候呢？为此，CPU在控制单元中设置了两个寄存器：一个保存当前处理进程的代码段的起始地址，一个保存进程的数据段起始地址。这两个寄存器中写的是A进程的地址就运行的是A进程指令，是B进程的地址就运行的是B进程指令，而这个切换执行指令的行为就是<strong>进程切换</strong>。</p>
+<p>到此，我们发现内存跟CPU之间交互数据都是靠的总线。但是总线传输的数据也可以分为两类：一类是地址数据，也就是想获取内存中哪个位置的数据，这类总线被称为<strong>地址总线</strong>；一类是内存的真正的数据，这类叫做<strong>数据总线</strong>。</p>
+<p>地址总线确定了CPU可以访问<strong>内存的范围有多大</strong>，比如地址总线为两位，那么可以访问的地址只有00 01 10 11这四个位置，超过这四个位置的就无法区分了。</p>
+<p>数据总线确定了一次能够拿多少个数据进来。比如是两位数据总线，那么一次只能拿两位数进来，若想获取更多的数，必须要更多次数来拿取。</p>
+<h3 id="控制单元、计算单元、数据单元的组成"><a href="#控制单元、计算单元、数据单元的组成" class="headerlink" title="控制单元、计算单元、数据单元的组成"></a>控制单元、计算单元、数据单元的组成</h3><p>作为一个假装求知若渴的人，我就在想上面介绍的数据单元、控制单元、计算单元到底是什么组成的呢？当然是二极管啊…是直接由二极管组成的吗？还是说由其他寄存器组成？这样想了就去看看⑧</p>
+<p>以早期8086处理器为模型. …</p>
+<p>首先看看数据单元：</p>
+<img src="/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83%E7%BB%84%E6%88%90.png" class="" title="image-20210821140911489">
+
+<p>上面说过CPU需要暂存数据，为了达到这个目的芯片设计师在8086处理器中有8个16位的通用寄存器，也就是上上图的CPU中的数据单元，分别是AX、BX、CX、DX、SP、BP、SI、DI。这些寄存器主要就是为了暂存数据。</p>
+<p>想想当时计算机CPU的资源多珍贵，而我们的存储的数据不光有16位的，还有一些小数据4位、8位等，因此为了更加充分压榨CPU，就将其中的四个寄存器AX、BX、CX、DX分别分成两个八位寄存器来使用，分别是上面的AH、AL、BH、BL、CH、CL、DH、DL，其中H表示高位high，L表示地位low。这样长数据端数据都能够暂存了。</p>
+<p>接下来是控制单元：</p>
+<img src="/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/CPU%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83.png" class="" title="image-20210821142048469">
+
+<p>首先是其他寄存器。over</p>
+<p>其次，我们主要关注IP（Instruction Pointer）寄存器，它就是上上上（CPU运行图）个图中的控制单元的指令指针寄存器，其指向<strong>代码段下一条指令</strong>的位置。CPU能够不断的从内存中找到指令就是靠它了，找到之后会加载到CPU的指令队列中（有没有类似的熟悉味道？OS接收缓冲、kafka接收缓冲消息？思想有点儿类似哈），之后交给运算单元去计算执行。这样就保证了<strong>一个</strong>进程在CPU中的执行，那么多个进程存在的时候怎么办呢？怎么切换呢？</p>
+<p>首先，我们知道每个进程都分为代码段和数据段，那么肯定有两个寄存器指向代码段和数据段，也就是CS（代码段寄存器）和DS（数据段寄存器），通过CS可以找到代码在内存中的位置，通过DS可以找到数据在内存中的位置。从上图可知，还有两个寄存器SS、ES。这两个也是段寄存器，带着存在即合理的说法去找找它们“合理的理由”。由于我们程序中存在一种特殊的数据结构—栈，其数据的存取只能从一端进行，为了适应这种特殊的数据存取也就除了相应的寄存器SS（stack register，栈寄存器）。凡是与函数相关的操作，都与栈紧密相关（所以我认为这可能是存在栈寄存器的一个重要原因，未考证求认证）。</p>
+<p>从上面知道可以通过DS找到内存中的数据并加载到通用寄存器中，那么是怎么加载的呢？对于一个段（从段寄存器中加载）都有一个段的起始地址，而段的具体位置是一个数据量称之为偏移量（offset）。在DS、CS中都存放着段的起始地址，代码段的偏移量存放在IP寄存器中（所以说IP存放着指令地址），数据段的偏移量放在通用寄存器中。</p>
+<p>这里注意有一个问题存在：IP寄存器和通用寄存器都是16位的，但是8086的总线是20位的，那么这里就会“差4位”了，需要怎么凑齐呢？其方法就是“<strong>起始地址*16+偏移量</strong>”，也就是把CS、DS中的值左移4位变成20位了，再加上16位的偏移量就可以得到20位的数据地址了。所以我们可以知道8086的最大的内存（能区分的地址大小）为2^20=1M，超过这个空间就不能识别了。而一个段因为只有16位，所以一个段的最大地址为2^16=64kb。LOL直接卡死，pass。</p>
+<h3 id="32位处理器"><a href="#32位处理器" class="headerlink" title="32位处理器"></a>32位处理器</h3><p>计算机发展日新月异，原来的8086处理器早已不能满足各大玩家的需求，相应出来了32位、64位处理器，以32位处理器为例进行说明。</p>
+<p>32位的地址总线，可以识别的内存大小为2^32=4G。所以原来的架构是远远不够的了，但是又不能丢弃原来的架构（丢弃了就不兼容，顾客不满意，顾客就是上帝，上帝抛弃你，GG），因此就需要让其兼容原来的20位的地址总线的架构。</p>
+<p>首先是8个通用寄存器，可以直接将这八个通用寄存器扩展到32位，但是还是要保留16位、8位的使用方式；而指向下一条指令地址的指令指针寄存器IP也扩展为32位，同样也可以兼容16位的。</p>
+<img src="/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/32%E4%BD%8DCPU%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8.png" class="" title="image-20210821151821335">
+
+<p>而改动比较大的就是段寄存器了。为原来的段寄存器位数，并不是一个段的起始地址，也不是按照8位或16位这样来进行扩展的，而是为了满足地址总线弄了一个20位地址，这样每次都需要左移四位。为了解决这个问题，只能重新进行定义了。首先为了尽可能的兼容，CS、DS、DS、ES仍然是16位的，但是其不再是段的起始地址（左移4位后），其映射的是内存中的一个地址，这个内存中内容称为选择子。段的起始地址就保存在内存这个地方，这个地方是一个表格，表格中的一项是段描述符，也就是真正的段起始地址。这样就是先从段寄存器中拿到一个内存中的表格的一项，再从表格中的一项拿到段起始地址（是不是又是中间层解决问题的思想）。但是这样确实还是不兼容。</p>
+<p>我们将前面一种模式（20位地址）称为实模式，后面这种称为保护模式。当32位系统刚刚启动的时候CPU是处于实模式的，这个时候是和原来的20位是兼容的。当需要更多的内存的时候，可以进行模式的切换到32位的保护模式下运行。这样通过切换模式来实现了兼容。</p>
+<p>参考：《计算机组成原理》《趣谈Linux操作系统》《UINX高级环境编程》</p>
+<p>说明：本文主要是记录自己学习笔记，加深自己理解，有些比喻不太恰当的地方请轻喷。错误的知识请使劲儿。因此<strong>本文只做参考与理解</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">yousec</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/">http://example.com/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CPU/">CPU</a><a class="post-meta__tags" href="/tags/%E5%AF%84%E5%AD%98%E5%99%A8/">寄存器</a><a class="post-meta__tags" href="/tags/%E5%A4%84%E7%90%86%E5%99%A8/">处理器</a><a class="post-meta__tags" href="/tags/OS/">OS</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2021/08/10/HTTP%E5%8D%8F%E8%AE%AE%E7%AC%94%E8%AE%B0/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">HTTP协议笔记</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">yousec</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">8</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">25</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">5</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CPU%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-number">1.</span> <span class="toc-text">CPU的组成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E6%98%AF%E5%A6%82%E4%BD%95%E8%AE%A1%E7%AE%97%E7%9A%84%EF%BC%9F"><span class="toc-number">1.0.1.</span> <span class="toc-text">CPU是如何计算的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E4%B8%8E%E5%86%85%E5%AD%98%E7%9A%84%E5%90%88%E4%BD%9C"><span class="toc-number">1.0.2.</span> <span class="toc-text">CPU与内存的合作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83%E3%80%81%E8%AE%A1%E7%AE%97%E5%8D%95%E5%85%83%E3%80%81%E6%95%B0%E6%8D%AE%E5%8D%95%E5%85%83%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-number">1.0.3.</span> <span class="toc-text">控制单元、计算单元、数据单元的组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32%E4%BD%8D%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">1.0.4.</span> <span class="toc-text">32位处理器</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/" title="操作系统笔记之CPU的认知"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="操作系统笔记之CPU的认知"/></a><div class="content"><a class="title" href="/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/" title="操作系统笔记之CPU的认知">操作系统笔记之CPU的认知</a><time datetime="2021-08-21T07:34:15.000Z" title="Created 2021-08-21 15:34:15">2021-08-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/10/HTTP%E5%8D%8F%E8%AE%AE%E7%AC%94%E8%AE%B0/" title="HTTP协议笔记"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTTP协议笔记"/></a><div class="content"><a class="title" href="/2021/08/10/HTTP%E5%8D%8F%E8%AE%AE%E7%AC%94%E8%AE%B0/" title="HTTP协议笔记">HTTP协议笔记</a><time datetime="2021-08-09T16:35:11.000Z" title="Created 2021-08-10 00:35:11">2021-08-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/03/redis%E7%AC%94%E8%AE%B0/" title="redis笔记"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="redis笔记"/></a><div class="content"><a class="title" href="/2021/08/03/redis%E7%AC%94%E8%AE%B0/" title="redis笔记">redis笔记</a><time datetime="2021-08-03T15:08:40.000Z" title="Created 2021-08-03 23:08:40">2021-08-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/03/kafka%E5%85%AB%E8%82%A1%E6%96%87/" title="kafka"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="kafka"/></a><div class="content"><a class="title" href="/2021/08/03/kafka%E5%85%AB%E8%82%A1%E6%96%87/" title="kafka">kafka</a><time datetime="2021-08-03T15:04:44.000Z" title="Created 2021-08-03 23:04:44">2021-08-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/03/tcp-ip%E5%85%AB%E8%82%A1%E6%96%87/" title="tcp_ip八股文"><img src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="tcp_ip八股文"/></a><div class="content"><a class="title" href="/2021/08/03/tcp-ip%E5%85%AB%E8%82%A1%E6%96%87/" title="tcp_ip八股文">tcp_ip八股文</a><time datetime="2021-08-03T15:00:18.000Z" title="Created 2021-08-03 23:00:18">2021-08-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By yousec</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-58o8.vercel.app/',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-58o8.vercel.app/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
