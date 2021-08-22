@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>操作系统笔记之内核初始化</title>
+      <link href="/2021/08/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%86%85%E6%A0%B8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+      <url>/2021/08/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%86%85%E6%A0%B8%E5%88%9D%E5%A7%8B%E5%8C%96/</url>
+      
+        <content type="html"><![CDATA[<h1 id="内核的初始化"><a href="#内核的初始化" class="headerlink" title="内核的初始化"></a>内核的初始化</h1><p>内核初始化，就是我们操作系统的内核初始化。那么操作系统初始化需要初始化哪些东西？是按照什么步骤进行的？带着孜孜不倦的态度去探索了…</p><p>先来个大概的印象：</p><img src="/2021/08/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%86%85%E6%A0%B8%E5%88%9D%E5%A7%8B%E5%8C%96/%E5%86%85%E6%A0%B8%E5%88%9D%E5%A7%8B%E5%8C%96%E5%86%85%E5%AE%B9.png" class="" title="image-20210822154947311"><p>从中可以知道初始化的内容包含进程初始化（0、1、2）、中断处理初始化、内存管理初始化、调度管理初始化。</p><h3 id="进程初始化"><a href="#进程初始化" class="headerlink" title="进程初始化"></a>进程初始化</h3><p>首先，OS的目的是为了处理各种进程，但是OS本身也可以看做是一个跟CPU等硬件打交道的进程，因此在操作系统中必须先有一个进程：<strong>0号进程</strong>。这是OS创建的第一个进程，也是进程列表中的第一个进程。通过指令<code>set_task_end_magic(&amp;init_task)</code>来创建。OS中我们知道创建进程都是通过fork或者kernel_thread产生进程，但这个进程却不是，它也是唯一一个不是的。而进程列表（Process List）可以看做一个管理进程的工具，里面存放着所有的进程。</p><h3 id="中断初始化"><a href="#中断初始化" class="headerlink" title="中断初始化"></a>中断初始化</h3><p>在有了进程之后，我们如果有进程进行了中断或者其他处理，那么就需要进程系统调用，而系统调用也是通过发送中断的方式进行的。这就需要进行中断的初始化，通过函数<code>trap_init()</code>进行初始化，里面设置好了很多<strong>中断门</strong>。</p><h3 id="内存初始化"><a href="#内存初始化" class="headerlink" title="内存初始化"></a>内存初始化</h3><p>同样，进程的运行离不开内存（各种代码啊数据啊等等等），所以需要内存的初始化。通过函数<code>mm_init()</code>来初始化内存管理。</p><h3 id="调度初始化"><a href="#调度初始化" class="headerlink" title="调度初始化"></a>调度初始化</h3><p>进程在运行中可能会需要切换，这时候就需要对进程进行调度了，通过函数<code>sched_init()</code>来初始化调度管理模块。</p><h3 id="文件系统初始化"><a href="#文件系统初始化" class="headerlink" title="文件系统初始化"></a>文件系统初始化</h3><p>我们需要存取的数据太多的时候，不可能全部都放入在内存中，这时候就需要一个存放这些数据的地方：文件。通过<code>vfs_caches_init()</code>来初始化基于内存的文件系统<code>rootfs</code>。</p><p>最后就是OS调用rest_init()初始化其他方面了。</p><h1 id="1号进程初始化"><a href="#1号进程初始化" class="headerlink" title="1号进程初始化"></a>1号进程初始化</h1><p>在OS调用rest_init()的时候，首先第一个需要干的大事就是调用<code>kernel_thread(kernel_init, NULL, CLONE_FS)</code>创建系统第二个进程，这个进程就是<strong>1号进程</strong>。</p><p>我们都知道OS是分为用户态与内核态的（不知道的强行知道），这个1号进程就是运行的第一个用户进程。如果我们将0号进程比作师父，1号进程就是大师兄，而大师兄也会开枝散叶，就会形成一个门派（这个门派我就叫他<strong>进程树</strong>派）。</p><p>但是俗话说教会徒弟饿死师父，OS不能把所有的东西都完全交给1号进程去管理，只有把非核心的一些东西交给1号进程（核心资源自己保留，核心内存自己保留），也就是类似古代皇帝不能将所有权限都给了你的属下，不然它们会造反王朝就会分崩离析（蓝屏警告）。因此x86提供了一种分层的权限机制，将区域分成了四个Ring，越往里权限越高。</p><img src="/2021/08/22/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8B%E5%86%85%E6%A0%B8%E5%88%9D%E5%A7%8B%E5%8C%96/%E6%9D%83%E9%99%90%E5%88%86%E5%B1%82%E6%9C%BA%E5%88%B6.png" class="" title="image-20210822162153901"><p>OS很机灵的用了这个机制，将关键资源的代码放在Ring0，这就是我们耳熟能详、常常被八股提到的<strong>内核态</strong>；而讲普通的程序代码就放在Ring3，这也是我们常常听到的<strong>用户态</strong>。我们一般的程序也就是跑在用户态的。</p><p>这里有个问题，就是大徒弟解决不了的问题必须要师父解决，也就是说用户态的资源没办法去解决问题了，需要用到核心的内核态资源去运行，这时候怎么去访问呢？比如发送一个网络包，需要去内核中访问。而这时候就需要暂停当前的运行，调用系统调用来运行内核中的代码了。首先，内核将从系统调用传过来的包在网卡上排队，一直等待轮到的时候就发送，发送完了之后代表系统调用结束，再返回用户态，让暂停的程序继续跑。</p><p>那么，上面提到了这个程序要暂停，那么是怎么实现的呢？我们都知道程序跑的就是数据与数据的计算，所以暂停是不是就需要将这些跑了的数据给记录下来？再次运行的时候接着这些数据继续运行就可以了。再有就是程序跑到哪儿了，代码段执行到哪一个指令了，这也需要保存起来，这个都是保存在寄存器里面的。所以，在暂停的那一刻，我们需要将CPU中寄存器的值全部存在一个进程管理容易获取的地方，当进程恢复的时候将这些值恢复回去继续运行。所以整个过程可以总结为：</p><p><strong>用户态-&gt;系统调用-&gt;保存寄存器-&gt;内核态执行系统调用-&gt;恢复寄存器-&gt;返回用户态</strong></p><h3 id="内核态到用户态"><a href="#内核态到用户态" class="headerlink" title="内核态到用户态"></a>内核态到用户态</h3><p>上面在初始化1号进程的时候，也就是在执行kernel_thread这个函数的时候，我们还是在内核态的（这时候还没用户态呢），那么如何从内核态切换到用户态呢？</p><p>在调用kernel_thread这个函数的时候有一个参数kernel_init，这也是个函数，在kernel_init中有一段代码：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ramdisk_execute_command) &#123; </span><br><span class="line">    ret = run_init_process(ramdisk_execute_command);</span><br><span class="line">    ...... </span><br><span class="line">&#125;</span><br><span class="line">...... </span><br><span class="line">    <span class="keyword">if</span> (!try_to_run_init_process(<span class="string">&quot;/sbin/init&quot;</span>) || </span><br><span class="line">        !try_to_run_init_process(<span class="string">&quot;/etc/init&quot;</span>) || </span><br><span class="line">        !try_to_run_init_process(<span class="string">&quot;/bin/init&quot;</span>) || </span><br><span class="line">        !try_to_run_init_process(<span class="string">&quot;/bin/sh&quot;</span>)) </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure><p>可以发现1号进程运行的是一个文件（linux一切皆文件是不是又符合了），而在run_init_process中发现都会调用do_execve。需要注意的是，execve是一个系统调用，其作用就是执行一个文件，前面加一个do一般就是指内核系统调用实现。而在调用do_execve的时候，会执行“内核态系统调用-&gt;恢复寄存器-&gt;返回用户态”这个过程中的部分，从内核态执行系统调用开始。在经过一系列的调用之后最终会调用一个函数start_thread函数，如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span></span></span><br><span class="line"><span class="function"><span class="title">start_thread</span><span class="params">(struct pt_regs *regs, <span class="keyword">unsigned</span> <span class="keyword">long</span> new_ip, <span class="keyword">unsigned</span> <span class="keyword">long</span> new_sp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">set_user_gs(regs, <span class="number">0</span>);</span><br><span class="line">regs-&gt;fs  = <span class="number">0</span>;</span><br><span class="line">regs-&gt;ds  = __USER_DS;</span><br><span class="line">regs-&gt;es  = __USER_DS;</span><br><span class="line">regs-&gt;ss  = __USER_DS;</span><br><span class="line">regs-&gt;cs  = __USER_CS;</span><br><span class="line">regs-&gt;ip  = new_ip;</span><br><span class="line">regs-&gt;sp  = new_sp;</span><br><span class="line">regs-&gt;flags  = X86_EFLAGS_IF;</span><br><span class="line">force_iret();</span><br><span class="line">&#125;</span><br><span class="line">EXPORT_SYMBOL_GPL(start_thread);</span><br></pre></td></tr></table></figure><p>其中register代表的是寄存器，pt_regs这个机构体保存的就是用户态的上下文，里面将用户态的代码段<code>CS</code>设置为<code>__USER_CS</code>，将用户太的数据段<code>DS</code>设置为<code>__USER_DS</code>，以及指令指针寄存器IP、栈寄存器SP。这就是保存寄存器的步骤。</p><p>最后的 iret 是干什么的呢？它是用于从系统调用中返回。这个时候会恢复寄存器。从哪里恢复呢？按说是从进入系统调用的时候，保存的寄存器里面拿出。好在上面的函数补上了寄存器。CS 和指令指针寄存器 IP 恢复了，指向用户态下一个要执行的语句。DS 和函数栈指针 SP 也被恢复了，指向用户态函数栈的栈顶。所以，下一条指令，就从用户态开始运行了。</p><h1 id="2号进程初始化"><a href="#2号进程初始化" class="headerlink" title="2号进程初始化"></a>2号进程初始化</h1><p>从上可知用户态进程已经有人管理了，那么内核态的进程有没有一个类似的大师兄来进程管理呢？没有就说不过去了，所以rest_init的第二个大事情就是创建第三个进程，<strong>2号进程</strong>。</p><p>通过函数kernel_thread(kthreadd, NULL, CLONE_FS | CLONE_FILES)来创建进程。注意这里创建进程使用的是thread，可以翻译成线程。明明是创建的进程为什么会用线程的字来创建呢？</p><p>我们从用户态来看，创建一个进程就是分配资源（内存啊、文件啊等等），若只有一个线程来执行就是这个进程的主线程，若是有多个线程来并行执行就是多线程。但是从内核来看，无论是进程还是线程，都被统一称之为任务（task），使用的都是相同的数据结构，平放在同一个链表中。这里创建内核进程的函数<code>kthreadd</code>，其负责所有内核的线程的调度和管理，是内核态所有线程（或者说任务）运行的祖先。</p><p>现在用户态和内核态的进程都有人管了，可以去真正的运行一些进程了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 操作系统 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> CPU </tag>
+            
+            <tag> 内核态 </tag>
+            
+            <tag> 用户态 </tag>
+            
+            <tag> OS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>操作系统笔记之CPU的认知</title>
       <link href="/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/"/>
       <url>/2021/08/21/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E4%B9%8BCPU%E7%9A%84%E8%AE%A4%E7%9F%A5/</url>
@@ -22,11 +53,11 @@
             
             <tag> CPU </tag>
             
+            <tag> OS </tag>
+            
             <tag> 寄存器 </tag>
             
             <tag> 处理器 </tag>
-            
-            <tag> OS </tag>
             
         </tags>
       
